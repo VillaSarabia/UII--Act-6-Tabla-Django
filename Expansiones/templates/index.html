@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Catálogo de Expansiones Pokémon</title>
+    <style>
+        body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            margin: 40px; 
+            background-color: #f4f4f9;
+        }
+        h1 {
+            color: #333;
+            border-bottom: 2px solid #ffcc00; /* Color Pokémon */
+            padding-bottom: 10px;
+        }
+        table { 
+            width: 80%; /* Aumentamos el ancho para más columnas */
+            border-collapse: collapse; 
+            margin-top: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            background-color: white;
+        }
+        th, td { 
+            border: 1px solid #ddd; 
+            padding: 12px; 
+            text-align: left; 
+        }
+        th { 
+            background-color: #ffcc00; /* Encabezado amarillo */
+            color: #333;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9; /* Rayado para mejor legibilidad */
+        }
+    </style>
+</head>
+<body>
+    <h1>Catálogo de Expansiones Pokémon</h1>
+    
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Lanzamiento</th>
+                <th>Total Cartas</th>
+                <th>Idioma</th>
+                <th>Activa</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for expansion in lista_expansiones %}
+            <tr>
+                <td>{{ expansion.id }}</td> 
+                <td>{{ expansion.Nombre_expansion }}</td>
+                <td>{{ expansion.fecha_lanzamiento }}</td>
+                <td>{{ expansion.total_cartas }}</td>
+                <td>{{ expansion.idioma }}</td>
+                <td>
+                    {% if expansion.activa %}
+                        Sí
+                    {% else %}
+                        No
+                    {% endif %}
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="6" style="text-align: center; color: #cc0000;">
+                    ¡Alto! No hay expansiones registradas en la base de datos.
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
